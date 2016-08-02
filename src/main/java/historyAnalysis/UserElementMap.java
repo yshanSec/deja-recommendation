@@ -1,10 +1,8 @@
 package historyAnalysis;
 
-import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFunction;
 import scala.Tuple2;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**

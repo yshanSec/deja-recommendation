@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 /**
  * Created by yishan on 1/8/16.
  */
-class ProductHashMap extends HashMap {
+class ProductHashMap extends HashMap implements Serializable {
     private static Logger log = Logger.getLogger(ProductHashMap.class.getName());
 
     public ProductHashMap(){

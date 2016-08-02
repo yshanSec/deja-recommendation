@@ -5,6 +5,7 @@ import common.ProductSearcher;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.log4j.Logger;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -14,6 +15,10 @@ import org.apache.spark.broadcast.Broadcast;
 import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
+
+import org.json.JSONObject;
+
+
 
 /**
  * Created by yishan on 1/8/16.
@@ -48,10 +53,17 @@ public class UserProfiling {
         hdfs.delete(new Path(storePath), true);
     }
 
+    private static void debug(){
+        Logger log = Logger.getLogger(UserProfiling.class.getName());
+
+        System.out.println((new JSONObject()).getClass().getPackage().getSpecificationVersion());
+        System.out.println(log.getClass().getPackage().getSpecificationVersion());
+    }
+
     public static void main(String[] argv) throws IOException{
         UserProfiling.loadConf();
         UserProfiling.init();
-
+//        UserProfiling.debug();
         SparkConf conf = new SparkConf().setAppName(UserProfiling.class.getName()).setMaster(master);
         JavaSparkContext sparkcontext = new JavaSparkContext(conf);
         //broadcast value
@@ -66,5 +78,7 @@ public class UserProfiling {
         JavaPairRDD<String, HashMap<String, HashMap<String, Integer>>> userInfoPair = elementGatherPairs.mapToPair(new UserElementMap());
         JavaPairRDD<String, HashMap<String, HashMap<String, Integer>>> userInfo = userInfoPair.reduceByKey(new UserElementReduce());
         userInfo.saveAsTextFile(UserProfiling.storePath);
+        sparkcontext.close();
+        System.exit(0);
     }
 }

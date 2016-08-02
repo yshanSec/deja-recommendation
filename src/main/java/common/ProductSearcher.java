@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import common.ProductHashMap;
 /**
  * Created by yishan on 1/8/16.
  */

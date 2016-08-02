@@ -4,6 +4,7 @@ import common.ErrorStatus;
 import common.FieldProcessor;
 import common.ProductSearcher;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
+import org.apache.spark.broadcast.Broadcast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import scala.Tuple2;
@@ -14,18 +15,20 @@ import java.util.ArrayList;
  * Created by yishan on 1/8/16.
  */
 public class ProductElementsFlatMap implements PairFlatMapFunction<String, String, Integer> {
-
+//    ProductSearcher productSearcher;
+//    public ProductElementsFlatMap(Broadcast<ProductSearcher> productSearcher){
+//        this.productSearcher = productSearcher.value();
+//    }
     public Iterable<Tuple2<String, Integer>> call(String line){
         ArrayList<Tuple2<String, Integer>> results = new ArrayList<Tuple2<String, Integer>>();
 //        process line
         String key;
         String[] productVisitInfo = line.split("\t");
         key = productVisitInfo[0];
-
+        ProductSearcher productSearcher = UserProfiling.productSearcher.value();
 //        get fields info of product
         JSONObject json = new JSONObject(productVisitInfo[2]);
         JSONArray productIds = json.getJSONArray("product_ids");
-        ProductSearcher productSearcher = UserProfiling.productSearcher.value();
         for(int i = 0; i < productIds.length(); i++){
 //            fieldList = {"cutting", "color", "price", "brand", "subcategory", "category"};
 //            process different fields, cutting contains a list, the other fields only contain a value
