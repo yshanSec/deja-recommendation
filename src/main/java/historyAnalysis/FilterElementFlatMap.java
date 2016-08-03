@@ -78,8 +78,8 @@ public class FilterElementFlatMap implements PairFlatMapFunction<String, String,
         }
         ArrayList<String> priceScope = FieldProcessor.processPriceRange(priceRange);
         for(int i = 0; i < priceScope.size(); i++){
-            if(priceScope.get(i) != ErrorStatus.KEY_FOBIDDEN && priceScope.get(i) != ErrorStatus.NOT_FOUND
-                    && subcategory != ErrorStatus.KEY_FOBIDDEN && subcategory != ErrorStatus.NOT_FOUND)
+            if((! priceScope.get(i).equals(ErrorStatus.KEY_FOBIDDEN))  && (!priceScope.get(i).equals(ErrorStatus.NOT_FOUND))
+                    && (! subcategory.equals(ErrorStatus.KEY_FOBIDDEN)) && (! subcategory.equals(ErrorStatus.NOT_FOUND)))
             results.add(new Tuple2<String, Integer>(key.concat("\tprice\t").concat(priceScope.get(i)), 1));
         }
         return results;

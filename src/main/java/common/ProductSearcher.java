@@ -12,11 +12,11 @@ public class ProductSearcher implements Serializable{
 //    mysql connection
     static String mysqlURLPrefix = "jdbc:mysql://";
     private String ProductQuery = "select * from deja.product";
-    private String[] fieldList = {"cuttings", "color", "price", "brand", "subcategory", "category"};
+    protected String[] fieldList = {"cutting", "color", "price", "brand", "subcategory", "category"};
 //    log
-    private static Logger log = Logger.getLogger(ProductSearcher.class.getName());
+    protected static Logger log = Logger.getLogger(ProductSearcher.class.getName());
 //    product
-    private HashMap<String, ProductHashMap> productMap = new HashMap<String, ProductHashMap>();
+    protected HashMap<String, ProductHashMap> productMap = new HashMap<String, ProductHashMap>();
 
     public ProductSearcher(ConfFromProperties conf){
         Connection conn = null;
@@ -54,7 +54,7 @@ public class ProductSearcher implements Serializable{
 
     private boolean fieldIsValid(String field){
         for(int i =0 ; i < fieldList.length; i++){
-            if(field == fieldList[i]){
+            if(field.equals(fieldList[i])){
                 return true;
             }
         }

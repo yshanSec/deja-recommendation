@@ -1,6 +1,7 @@
 package historyAnalysis;
 
 import common.ConfFromProperties;
+import common.InvertedIndex;
 import common.ProductSearcher;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -16,8 +17,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 
+import org.apache.spark.storage.StorageLevel;
 import org.json.JSONObject;
-
 
 
 /**
@@ -30,7 +31,7 @@ public class UserProfiling {
     private static String keywordsLoggerPath;
     private static String storePath;
     private static String hdfsURI;
-    public static Broadcast<ProductSearcher> productSearcher;
+//    public static Broadcast<ProductSearcher> productSearcher;
 
     private static void loadConf() throws IOException{
 //        get configuration file
@@ -67,17 +68,24 @@ public class UserProfiling {
         SparkConf conf = new SparkConf().setAppName(UserProfiling.class.getName()).setMaster(master);
         JavaSparkContext sparkcontext = new JavaSparkContext(conf);
         //broadcast value
-        UserProfiling.productSearcher = sparkcontext.broadcast(new ProductSearcher(UserProfiling.userProfilingConf));
+        Broadcast<ProductSearcher> productSearcherBroadcast = sparkcontext.broadcast(new ProductSearcher(UserProfiling.userProfilingConf));
+        Broadcast<InvertedIndex> invertedIndexBroadcast = sparkcontext.broadcast(new InvertedIndex(UserProfiling.userProfilingConf));
+        //start calculate
         JavaRDD<String> userProduceLoggerFileRDD = sparkcontext.textFile(UserProfiling.productLoggerPath);
         JavaRDD<String> userKeywordLoggerFileRDD = sparkcontext.textFile(UserProfiling.keywordsLoggerPath);
-        JavaPairRDD<String, Integer> elementProducePairs = userProduceLoggerFileRDD.flatMapToPair(new ProductElementsFlatMap());
+        JavaPairRDD<String, Integer> elementProducePairs = userProduceLoggerFileRDD.flatMapToPair(new ProductElementsFlatMap(productSearcherBroadcast));
         JavaPairRDD<String, Integer> elementKeywordPairs = userKeywordLoggerFileRDD.flatMapToPair(new FilterElementFlatMap());
         JavaPairRDD<String, Integer> elementPairs = elementProducePairs.union(elementKeywordPairs);
 
         JavaPairRDD<String, Integer> elementGatherPairs = elementPairs.reduceByKey(new ProductElementsReduce());
         JavaPairRDD<String, HashMap<String, HashMap<String, Integer>>> userInfoPair = elementGatherPairs.mapToPair(new UserElementMap());
         JavaPairRDD<String, HashMap<String, HashMap<String, Integer>>> userInfo = userInfoPair.reduceByKey(new UserElementReduce());
-        userInfo.saveAsTextFile(UserProfiling.storePath);
+        userInfo.persist(StorageLevel.MEMORY_ONLY());
+        JavaRDD<String> userInfoString = userInfo.map(new RDDObjectToStringMap());
+        userInfoString.saveAsTextFile(UserProfiling.storePath);
+        //essential judge, get history recommendation
+        JavaPairRDD<String, String> userProduct = userInfo.mapToPair(new UserProductMap(invertedIndexBroadcast));
+
         sparkcontext.close();
         System.exit(0);
     }

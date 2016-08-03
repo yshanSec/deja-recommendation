@@ -8,11 +8,8 @@ import java.util.ArrayList;
 public class FieldProcessor {
 
     public static String process(String field, String value){
-        if(field == "price"){
+        if(field.equals("price")){
             return PriceClassfier.search(Integer.parseInt(value));
-        }
-        else if(field == "brand"){
-            return "b".concat(Integer.toString(Integer.parseInt(value)));
         }
         else{
             return value;
@@ -30,7 +27,7 @@ class PriceClassfier {
     public static String search(int price){
         for(int i = 0; i < PriceClassfier.priceRange.length; i++){
             if(price >= PriceClassfier.priceRange[i] && price < PriceClassfier.priceRange[i+1]){
-                return "p".concat(Integer.toString(i));
+                return Integer.toString(i);
             }
         }
         return ErrorStatus.NOT_FOUND;
