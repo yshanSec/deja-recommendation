@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3672cef-7e35-4c84-a594-5e38827905a7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/common/InvertedIndex.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/historyAnalysis/RDDObjectToStringMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/historyAnalysis/UserProductMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/hashmapTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/common/EssentialJudge.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/common/FieldProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/common/FieldProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/common/ProductSearcher.java" afterPath="$PROJECT_DIR$/src/main/java/common/ProductSearcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/historyAnalysis/FilterElementFlatMap.java" afterPath="$PROJECT_DIR$/src/main/java/historyAnalysis/FilterElementFlatMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/historyAnalysis/ProductElementsFlatMap.java" afterPath="$PROJECT_DIR$/src/main/java/historyAnalysis/ProductElementsFlatMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/historyAnalysis/UserProfiling.java" afterPath="$PROJECT_DIR$/src/main/java/historyAnalysis/UserProfiling.java" />
     </list>
     <ignored path="deja-recommendation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,9 +35,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
               <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -56,11 +43,9 @@
       <file leaf-file-name="InvertedIndex.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/common/InvertedIndex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="276">
+              <caret line="149" column="26" selection-start-line="149" selection-start-column="26" selection-end-line="149" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,7 +56,6 @@
             <state relative-caret-position="216">
               <caret line="16" column="13" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <marker date="1470195905127" expanded="true" signature="355:381" ph="select * fro... product" />
               </folding>
             </state>
@@ -83,9 +67,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
               <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,9 +77,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="954">
               <caret line="71" column="32" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1137,7 +1117,7 @@
       <workItem from="1470046641050" duration="6704000" />
       <workItem from="1470065489708" duration="280000" />
       <workItem from="1470065824010" duration="48407000" />
-      <workItem from="1470219568227" duration="33000" />
+      <workItem from="1470219568227" duration="85000" />
     </task>
     <task id="LOCAL-00001" summary="broadcast bug">
       <created>1470137820502</created>
@@ -1146,11 +1126,18 @@
       <option name="project" value="LOCAL" />
       <updated>1470137820503</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add InvertedIndex and Essential field detection">
+      <created>1470219651683</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1470219651683</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76495000" />
+    <option name="totallyTimeSpent" value="76547000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1985" y="24" width="1855" height="1056" extended-state="6" />
@@ -1216,7 +1203,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="broadcast bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="broadcast bug" />
+    <MESSAGE value="Add InvertedIndex and Essential field detection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add InvertedIndex and Essential field detection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1247,9 +1235,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1257,9 +1243,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="954">
           <caret line="71" column="32" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1268,7 +1252,7 @@
         <state relative-caret-position="126">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1305,9 +1289,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
           <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1315,9 +1297,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="50" column="103" selection-start-line="49" selection-start-column="12" selection-end-line="50" selection-end-column="103" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1326,7 +1306,7 @@
         <state relative-caret-position="90">
           <caret line="5" column="26" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1336,7 +1316,6 @@
         <state relative-caret-position="594">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <marker date="1470195905127" expanded="true" signature="355:381" ph="select * fro... product" />
           </folding>
         </state>
@@ -1354,9 +1333,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1385,6 +1362,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="28" column="83" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="83" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2398,8 +2376,8 @@
         <state relative-caret-position="378">
           <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#835#843#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#835#843#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2424,6 +2402,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-158">
           <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2440,7 +2419,7 @@
         <state relative-caret-position="-244">
           <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2474,7 +2453,7 @@
         <state relative-caret-position="252">
           <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2483,9 +2462,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="954">
           <caret line="71" column="32" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2493,9 +2470,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2504,9 +2479,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2515,7 +2488,6 @@
         <state relative-caret-position="216">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
             <marker date="1470195905127" expanded="true" signature="355:381" ph="select * fro... product" />
           </folding>
         </state>
@@ -2523,11 +2495,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/common/InvertedIndex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="276">
+          <caret line="149" column="26" selection-start-line="149" selection-start-column="26" selection-end-line="149" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
