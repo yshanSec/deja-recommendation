@@ -141,17 +141,14 @@ public class InvertedIndex extends ProductSearcher {
         ArrayList<String> essentialFieldList = new ArrayList<String>();
         HashMap<String, HashMap<String, Double>> elementUserDistributionMap =  this.elementUserDistribution(userInfo);
         ArrayList<String> fieldList = (ArrayList<String>) elementUserDistributionMap.keySet();
-        HashMap<Double,String> distanceMap = new HashMap<Double,String>();
+        HashMap<String, Double> distanceMap = new HashMap<String, Double>();
         for(int i = 0 ; i < fieldList.size(); i++){
             String field = fieldList.get(i);
             Double distance = this.compareFieldDistance(field, elementUserDistributionMap.get(field));
-            distanceMap.put(distance,field);
+            distanceMap.put(field, distance);
+            Collections.sort(distanceMap,new MapSortByValue());
         }
-        ArrayList<Double> distanceList = (ArrayList<Double>) distanceMap.keySet();
-        Collections.sort(distanceList);
-        for(int i = 0 ; i < 3; i++){
-            essentialFieldList.add(distanceMap.get(distanceList.get(i)));
-        }
+
         return essentialFieldList;
     }
 
