@@ -18,6 +18,7 @@ import java.net.URI;
 import java.util.HashMap;
 
 import org.apache.spark.storage.StorageLevel;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -61,15 +62,16 @@ public class UserProfiling {
         System.out.println(log.getClass().getPackage().getSpecificationVersion());
     }
 
-    public static void main(String[] argv) throws IOException{
+    public static void main(String[] argv) throws IOException, JSONException{
         UserProfiling.loadConf();
         UserProfiling.init();
 //        UserProfiling.debug();
-        SparkConf conf = new SparkConf().setAppName(UserProfiling.class.getName()).setMaster(master);
+        SparkConf conf = new SparkConf().setAppName(UserProfiling.class.getName()).setMaster(UserProfiling.master);
         JavaSparkContext sparkcontext = new JavaSparkContext(conf);
         //broadcast value
         Broadcast<ProductSearcher> productSearcherBroadcast = sparkcontext.broadcast(new ProductSearcher(UserProfiling.userProfilingConf));
         Broadcast<InvertedIndex> invertedIndexBroadcast = sparkcontext.broadcast(new InvertedIndex(UserProfiling.userProfilingConf));
+
         //start calculate
         JavaRDD<String> userProduceLoggerFileRDD = sparkcontext.textFile(UserProfiling.productLoggerPath);
         JavaRDD<String> userKeywordLoggerFileRDD = sparkcontext.textFile(UserProfiling.keywordsLoggerPath);
@@ -80,12 +82,12 @@ public class UserProfiling {
         JavaPairRDD<String, Integer> elementGatherPairs = elementPairs.reduceByKey(new ProductElementsReduce());
         JavaPairRDD<String, HashMap<String, HashMap<String, Integer>>> userInfoPair = elementGatherPairs.mapToPair(new UserElementMap());
         JavaPairRDD<String, HashMap<String, HashMap<String, Integer>>> userInfo = userInfoPair.reduceByKey(new UserElementReduce());
-        userInfo.persist(StorageLevel.MEMORY_ONLY());
-        JavaRDD<String> userInfoString = userInfo.map(new RDDObjectToStringMap());
-        userInfoString.saveAsTextFile(UserProfiling.storePath);
+//        userInfo.persist(StorageLevel.MEMORY_ONLY());
+//        JavaRDD<String> userInfoString = userInfo.map(new RDDObjectToStringMap());
+//        userInfoString.saveAsTextFile(UserProfiling.storePath);
         //essential judge, get history recommendation
         JavaPairRDD<String, String> userProduct = userInfo.mapToPair(new UserProductMap(invertedIndexBroadcast));
-
+        userProduct.saveAsTextFile(UserProfiling.storePath);
         sparkcontext.close();
         System.exit(0);
     }

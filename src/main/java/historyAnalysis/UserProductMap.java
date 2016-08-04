@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
 /**
  * Created by yishan on 3/8/16.
  */
@@ -29,8 +30,8 @@ public class UserProductMap
         for(int i = 0; i < essentialFilters.size(); i++){
             productIds.addAll(this.invertedIndex.invertedSearchCombine(essentialFilters.get(i)));
         }
-        HashSet<String> productIdsSet = new HashSet<String>(productIds);
-        String productIdsString = (new JSONObject(productIdsSet)).toString();
+        ArrayList<String> productIdsSet = new ArrayList<String>(new HashSet<String>(productIds));
+        String productIdsString = (new JSONArray(productIdsSet)).toString();
         return new Tuple2<String, String>(uid,productIdsString);
     }
 }

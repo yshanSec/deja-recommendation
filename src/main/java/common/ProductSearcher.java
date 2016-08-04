@@ -1,10 +1,13 @@
 package common;
 
 import org.apache.log4j.Logger;
+import org.json.JSONException;
+
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 /**
  * Created by yishan on 1/8/16.
  */
@@ -12,13 +15,13 @@ public class ProductSearcher implements Serializable{
 //    mysql connection
     static String mysqlURLPrefix = "jdbc:mysql://";
     private String ProductQuery = "select * from deja.product";
-    protected String[] fieldList = {"cutting", "color", "price", "brand", "subcategory", "category"};
+    protected String[] fieldList = {"cutting", "color", "price", "brand", "subcategory"};
 //    log
     protected static Logger log = Logger.getLogger(ProductSearcher.class.getName());
 //    product
     protected HashMap<String, ProductHashMap> productMap = new HashMap<String, ProductHashMap>();
 
-    public ProductSearcher(ConfFromProperties conf){
+    public ProductSearcher(ConfFromProperties conf) throws JSONException{
         Connection conn = null;
         Statement statement = null;
         String host = conf.getValue("host");

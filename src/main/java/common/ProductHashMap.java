@@ -2,6 +2,7 @@ package common;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -50,7 +51,7 @@ class ProductHashMap extends HashMap implements Serializable {
         this.put("cutting", cuttingArrayList);
     }
 
-    public ProductHashMap(ResultSet resultSet) throws SQLException {
+    public ProductHashMap(ResultSet resultSet) throws SQLException, JSONException {
         ArrayList<String> idArrayList = new ArrayList<String>();
         idArrayList.add(resultSet.getString("id"));
         this.put("id", idArrayList);

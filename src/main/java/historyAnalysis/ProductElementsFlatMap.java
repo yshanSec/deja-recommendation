@@ -2,11 +2,13 @@ package historyAnalysis;
 
 import common.ErrorStatus;
 import common.FieldProcessor;
+import common.InvertedIndex;
 import common.ProductSearcher;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
 import org.apache.spark.broadcast.Broadcast;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONException;
 import scala.Tuple2;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class ProductElementsFlatMap implements PairFlatMapFunction<String, Strin
     public ProductElementsFlatMap(Broadcast<ProductSearcher> productSearcher){
         this.productSearcher = productSearcher.value();
     }
-    public Iterable<Tuple2<String, Integer>> call(String line){
+    public Iterable<Tuple2<String, Integer>> call(String line) throws JSONException{
         ArrayList<Tuple2<String, Integer>> results = new ArrayList<Tuple2<String, Integer>>();
 //        process line
         String key;

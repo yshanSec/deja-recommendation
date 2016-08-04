@@ -18,6 +18,7 @@
             <!--<artifactId>spark-assembly_2.10</artifactId>-->
             <!--<version>1.6.0-cdh5.8.0</version>-->
         <!--</dependency>-->
+
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.10</artifactId>
@@ -51,7 +52,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20160212</version>
+            <version>20090211</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
